@@ -1,0 +1,24 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 18rem;
+  height: 28rem;
+  background-color: #282828;
+  border-radius: 0.75rem;
+}
+
+.img {
+  width: 100%;
+  height: 90%;
+  border-radius: 0.75rem 0.75rem 0 0;
+  object-fit: cover;
+}
+
+.title {
+  font-weight: 400;
+  color: #fff;
+  background-color: transparent;
+  text-align: center;
+  margin: auto 0;
+  text-transform: uppercase;
+}
