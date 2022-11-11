@@ -2,3 +2,7 @@
   height: 8rem;
   background-color: #282828;
 }
+
+.link {
+  text-decoration: none;
+}
