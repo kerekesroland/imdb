@@ -1,29 +1,85 @@
 import { POPULAR_MOVIES } from "../../Graphql/Queries/fetchPopular";
-import { useQuery } from "@apollo/client";
-import Navbar from "../../components/Navbar/Navbar";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import styles from "./Home.module.css";
+import Box from "@mui/material/Box";
+import LoadingBubbles from "../../components/LoadingSpinner/LoadingBubbles";
+import Navbar from "../../components/Navbar/Navbar";
+import { useEffect, useState } from "react";
+import { SEARCH_MOVIE } from "../../Graphql/Queries/searchMovie";
 
-type Props = {};
-
-const Home = (props: Props) => {
+const Home = () => {
   const { data, error, loading } = useQuery(POPULAR_MOVIES);
+  const [
+    SearchMovie,
+    {
+      data: searchedData,
+      loading: searchedDataLoading,
+      error: searchedDataError,
+    },
+  ] = useLazyQuery(SEARCH_MOVIE);
+  const [filteredMovies, setFilteredMovies] = useState([]);
 
-  console.log(data);
+  //Checking if the there was any filtering or not, if not, just return the popularMovies
+  useEffect(() => {
+    if (data && filteredMovies.length === 0) {
+      setFilteredMovies(data.popularMovies);
+    }
+  }, [data, filteredMovies.length]);
 
-  if (loading) {
-    return <h1>Loading...</h1>;
+  //Function that handles the filtering
+  const handleSearch = (event: any, inputRef: any) => {
+    const searchedText = inputRef.current.value;
+    if (searchedText !== "") {
+      if ((event && event.key === "Enter") || event.type === "click") {
+        SearchMovie({
+          variables: { query: searchedText },
+          onError(error) {
+            console.error(error);
+          },
+          onCompleted(searchedData) {
+            setFilteredMovies(searchedData.searchMovies);
+          },
+        });
+      }
+    } else {
+      setFilteredMovies(data.popularMovies);
+    }
+  };
+
+  //Checking for data to be returned, until then there is this cool Tiktok like loading :D
+  if (loading || searchedDataLoading) {
+    return (
+      <div className={styles.loader}>
+        <LoadingBubbles />
+      </div>
+    );
+  }
+
+  //Checking for any errors while fetching data
+  if (error) {
+    return <h1>{error.extraInfo}</h1>;
+  }
+  if (searchedDataError) {
+    return <h1>{searchedDataError.extraInfo}</h1>;
   }
 
   return (
-    <div>
-      <Navbar />
-      <div className={styles.movies}>
-        {data.popularMovies.map((movie: any) => (
-          <MovieCard key={movie.id} url={movie.img.url} title={movie.name} />
+    <>
+      <Navbar handleSearch={handleSearch} />
+      <Box sx={{ pt: 10, pb: 5 }} className={styles.movies}>
+        {filteredMovies.map((movie: any) => (
+          <MovieCard
+            key={movie?.id}
+            id={movie?.id}
+            url={movie?.img?.url}
+            title={movie?.name}
+            category={movie?.genres}
+            score={movie?.score}
+          />
         ))}
-      </div>
-    </div>
+      </Box>
+    </>
   );
 };
 
