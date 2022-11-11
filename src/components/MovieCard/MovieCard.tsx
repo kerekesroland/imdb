@@ -1,21 +1,42 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 import styles from "./MovieCard.module.css";
 
-type Props = {
-  url: string;
-  title: string;
+type Category = {
+  id: number;
+  name: string;
 };
 
-const MovieCard: FC<Props> = ({ url, title }) => {
+type Props = {
+  id: number;
+  url: string;
+  title: string;
+  score: number;
+  category: Category[];
+};
+
+const MovieCard: FC<Props> = ({ id, url, title, category, score }) => {
   return (
-    <div className={styles.card}>
-      <img className={styles.img} src={url} alt="" />
-      <p className={styles.title}>{title}</p>
-      <div className={styles.details}>
-        <p className={styles.genre}></p>
-        <p className={styles.date}></p>
+    <Link className={styles.link} to={`/movie/${id}`}>
+      <div className={styles.card}>
+        <img className={styles.img} src={url} alt="" />
+        <div className={styles.details}>
+          <div className={styles.mainDetails}>
+            <p className={styles.title}>{title}</p>
+            <span className={styles.scoreValue}>
+              {score.toFixed(2)} <span className={styles.score}>/10</span>
+            </span>
+          </div>
+          <div className={styles.categories}>
+            {category.map((c) => (
+              <p key={c.id} className={styles.category}>
+                {c.name}
+              </p>
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
