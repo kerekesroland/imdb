@@ -3,5 +3,8 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Rubik", sans-serif;
+}
+
+body {
   background-color: #1a192b;
 }
