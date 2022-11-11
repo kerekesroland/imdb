@@ -1,0 +1,25 @@
+.background {
+  width: 100vw;
+  height: 100vh;
+  padding-top: 5vh;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.bg {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/hobbit_bg.jpg");
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  transform: skewY(-2.2deg);
+  transform-origin: 0 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
