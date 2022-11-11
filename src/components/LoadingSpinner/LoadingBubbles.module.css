@@ -1,0 +1,42 @@
+.loader {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  z-index: 100;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  animation: rotate 1s infinite;
+}
+
+.loader::before {
+  background-color: rgb(204, 0, 255);
+}
+
+.loader::after {
+  background-color: rgb(11, 228, 228);
+  animation-delay: 0.5s;
+}
+
+@keyframes rotate {
+  0%,
+  100% {
+    left: 95px;
+  }
+  25% {
+    transform: scale(0.3);
+  }
+  50% {
+    left: 0;
+  }
+  75% {
+    transform: scale(1);
+  }
+}
