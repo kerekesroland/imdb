@@ -12,7 +12,7 @@ export const POPULAR_MOVIES = gql`
       }
       releaseDate
       img: poster {
-        url: custom(size: "w185_and_h278_bestv2")
+        original
       }
     }
   }

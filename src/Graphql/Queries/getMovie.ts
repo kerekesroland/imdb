@@ -6,6 +6,11 @@ export const MOVIE = gql`
       id
       name
       overview
+      score
+      genres {
+        id
+        name
+      }
       poster {
         original
       }
