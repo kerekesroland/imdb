@@ -6,3 +6,8 @@
 .link {
   text-decoration: none;
 }
+
+.app-bar-style {
+  background-color: "#282828";
+  height: "4rem";
+}

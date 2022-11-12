@@ -27,7 +27,7 @@ const drawerWidth = 240;
 const navItems = ["Popular Movies", "Discover Movies", "Discover Tv Shows"];
 
 interface IProps {
-  handleSearch: Function;
+  handleSearch?: Function;
 }
 
 export const Navbar: FC<IProps> = ({ handleSearch }) => {
@@ -155,12 +155,12 @@ export const Navbar: FC<IProps> = ({ handleSearch }) => {
             </Link>
             <Search>
               <SearchIconWrapper
-                onClick={(event) => handleSearch(event, inputRef)}
+                onClick={(event) => handleSearch?.(event, inputRef)}
               >
                 <SearchIcon style={{ cursor: "pointer", zIndex: 999 }} />
               </SearchIconWrapper>
               <StyledInputBase
-                onKeyUp={(event) => handleSearch(event, inputRef)}
+                onKeyUp={(event) => handleSearch?.(event, inputRef)}
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
                 inputRef={inputRef}
