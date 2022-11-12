@@ -7,6 +7,7 @@ import LoadingBubbles from "../../components/LoadingSpinner/LoadingBubbles";
 import Navbar from "../../components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { SEARCH_MOVIE } from "../../Graphql/Queries/searchMovie";
+import { getWikiSearch } from "../../constants/wikipedia_endpoint";
 
 const Home = () => {
   const { data, error, loading } = useQuery(POPULAR_MOVIES);
@@ -25,6 +26,7 @@ const Home = () => {
     if (data && filteredMovies.length === 0) {
       setFilteredMovies(data.popularMovies);
     }
+    getWikiSearch();
   }, [data, filteredMovies.length]);
 
   //Function that handles the filtering
@@ -72,7 +74,7 @@ const Home = () => {
           <MovieCard
             key={movie?.id}
             id={movie?.id}
-            url={movie?.img?.url}
+            url={movie?.img?.original}
             title={movie?.name}
             category={movie?.genres}
             score={movie?.score}
