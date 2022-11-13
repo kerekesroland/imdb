@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { POPULAR_MOVIES } from "../../Graphql/Queries/fetchPopular";
 import { useLazyQuery, useQuery } from "@apollo/client";
 import MovieCard from "../../components/MovieCard/MovieCard";
@@ -6,35 +7,47 @@ import Box from "@mui/material/Box";
 import LoadingBubbles from "../../components/LoadingSpinner/LoadingBubbles";
 import Navbar from "../../components/Navbar/Navbar";
 import { useEffect, useState } from "react";
-import { SEARCH_MOVIE } from "../../Graphql/Queries/searchMovie";
-import { getWikiSearch } from "../../constants/wikipedia_endpoint";
+import {
+  SEARCH_MOVIE,
+  SEARCH_MOVIE_RELATED,
+} from "../../Graphql/Queries/searchMovie";
 
 const Home = () => {
   const { data, error, loading } = useQuery(POPULAR_MOVIES);
   const [
-    SearchMovie,
+    searchMovies,
     {
       data: searchedData,
       loading: searchedDataLoading,
       error: searchedDataError,
     },
   ] = useLazyQuery(SEARCH_MOVIE);
-  const [filteredMovies, setFilteredMovies] = useState([]);
+
+  const [
+    searchRelatedMovies,
+    {
+      data: related_movies,
+      loading: relatedMoviesLoading,
+      error: relatedMoviesError,
+    },
+  ] = useLazyQuery(SEARCH_MOVIE_RELATED);
+
+  const [filteredMovies, setFilteredMovies]: any = useState([]);
 
   //Checking if the there was any filtering or not, if not, just return the popularMovies
   useEffect(() => {
     if (data && filteredMovies.length === 0) {
       setFilteredMovies(data.popularMovies);
     }
-    getWikiSearch();
   }, [data, filteredMovies.length]);
 
   //Function that handles the filtering
   const handleSearch = (event: any, inputRef: any) => {
+    event.preventDefault();
     const searchedText = inputRef.current.value;
     if (searchedText !== "") {
       if ((event && event.key === "Enter") || event.type === "click") {
-        SearchMovie({
+        searchMovies({
           variables: { query: searchedText },
           onError(error) {
             console.error(error);
@@ -49,8 +62,22 @@ const Home = () => {
     }
   };
 
+  //Function that handles the search for related movies
+  const handleGetSimilarMovies = (title: string) => {
+    searchRelatedMovies({
+      variables: { query: title },
+      onError(error) {
+        console.error(error);
+      },
+      onCompleted(searchedData) {
+        const { similar }: any = searchedData.searchMovies[0];
+        setFilteredMovies([...searchedData.searchMovies, ...similar]);
+      },
+    });
+  };
+
   //Checking for data to be returned, until then there is this cool Tiktok like loading :D
-  if (loading || searchedDataLoading) {
+  if (loading || searchedDataLoading || relatedMoviesLoading) {
     return (
       <div className={styles.loader}>
         <LoadingBubbles />
@@ -65,6 +92,9 @@ const Home = () => {
   if (searchedDataError) {
     return <h1>{searchedDataError.extraInfo}</h1>;
   }
+  if (relatedMoviesError) {
+    return <h1>{relatedMoviesError.extraInfo}</h1>;
+  }
 
   return (
     <>
@@ -78,6 +108,7 @@ const Home = () => {
             title={movie?.name}
             category={movie?.genres}
             score={movie?.score}
+            handleGetSimilarMovies={handleGetSimilarMovies}
           />
         ))}
       </Box>
