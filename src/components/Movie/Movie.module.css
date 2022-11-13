@@ -1,8 +1,7 @@
 .loader {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 100px);
 }
 
 .container {
@@ -89,5 +88,10 @@
   .categories {
     justify-content: center;
     gap: 2rem;
+  }
+  .loader {
+    width: 75px;
+    height: 75px;
+    left: calc(50% - 75px);
   }
 }
