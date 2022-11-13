@@ -11,7 +11,14 @@
 
 .loader {
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 100px);
+}
+
+@media screen and (max-width: 768px) {
+  .loader {
+    width: 75px;
+    height: calc(50% - 75px);
+  }
 }
