@@ -14,49 +14,62 @@ type Props = {
   title: string;
   score: number;
   category: Category[];
+  handleGetSimilarMovies: Function;
 };
 
-const MovieCard: FC<Props> = ({ id, url, title, category, score }) => {
+const MovieCard: FC<Props> = ({
+  id,
+  url,
+  title,
+  category,
+  score,
+  handleGetSimilarMovies,
+}) => {
   const firstThreeCategories = category.slice(0, 3);
-  return (
-    <Link className={styles.link} to={`/movie/${id}`}>
-      <div className={styles.card}>
-        <img
-          className={url ? styles.img : styles.noImg}
-          src={url ? url : NoImage}
-          alt=""
-        />
 
-        <div className={styles.details}>
-          <div className={styles.mainDetails}>
-            <p className={styles.title}>
-              {title?.length > 30 ? `${title?.substring(0, 30)}...` : title}
-            </p>
-            <span className={styles.scoreValue}>
-              {score.toFixed(2)} <span className={styles.score}>/10</span>
-            </span>
-          </div>
-          <div className={styles.categories}>
-            {firstThreeCategories.length > 0 ? (
-              firstThreeCategories.map((c) => (
-                <p key={c.id} className={styles.category}>
-                  {c.name}
-                </p>
-              ))
-            ) : (
-              <p className={styles.category}>No categories</p>
-            )}
-          </div>
-        </div>
-        <div className={styles.descriptionContainer}>
-          <p className={styles.description}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-            autem eos saepe, vero quisquam eaque ad cum neque quod voluptatibus
-            id deserunt mollitia? Enim quia natus a, tempora earum mollitia!
+  return (
+    <div className={styles.card}>
+      <img
+        className={url ? styles.img : styles.noImg}
+        src={url ? url : NoImage}
+        alt=""
+      />
+
+      <div className={styles.details}>
+        <div className={styles.mainDetails}>
+          <p className={styles.title}>
+            {title?.length > 30 ? `${title?.substring(0, 30)}...` : title}
           </p>
+          <span className={styles.scoreValue}>
+            {score.toFixed(2)} <span className={styles.score}>/10</span>
+          </span>
+        </div>
+        <div className={styles.categories}>
+          {firstThreeCategories.length > 0 ? (
+            firstThreeCategories.map((c) => (
+              <p key={c.id} className={styles.category}>
+                {c.name}
+              </p>
+            ))
+          ) : (
+            <p className={styles.category}>No categories</p>
+          )}
+        </div>
+        <div className={styles.buttons}>
+          <button
+            className={styles.button}
+            onClick={() => {
+              handleGetSimilarMovies(title);
+            }}
+          >
+            Similar
+          </button>
+          <Link className={styles.link} to={`/movie/${id}`}>
+            <button className={styles.button}>See more</button>
+          </Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

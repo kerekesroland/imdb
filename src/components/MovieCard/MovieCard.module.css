@@ -10,6 +10,7 @@
   cursor: pointer;
   box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+  z-index: 1;
 }
 
 .card:hover {
@@ -35,28 +36,28 @@
   filter: blur(4px);
 }
 
-.card:hover .descriptionContainer .description {
+.card:hover .buttons {
   transition: 0.7s ease-in;
   opacity: 1;
 }
 
-.descriptionContainer {
+.buttons {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 50;
   text-align: center;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   align-items: center;
 }
 
-.description {
+.buttons {
   color: white;
   opacity: 0;
 }
 
-.description button {
+.buttons button {
   z-index: 999;
   cursor: pointer;
 }
@@ -133,4 +134,27 @@
   font-weight: 400;
   color: white;
   background-color: transparent;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  background-color: rgb(26, 25, 43);
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  color: #bc59ce;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.button:hover {
+  background-color: #bc59ce;
+  color: rgb(26, 25, 43);
 }
