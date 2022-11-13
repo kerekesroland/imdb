@@ -7,7 +7,7 @@ export const CustomBox = styled("div")(({ theme }) => ({
     justifyContent: "space-between",
     gap: "2rem",
   },
-  [theme.breakpoints.down(1070)]: {
+  [theme.breakpoints.down(965)]: {
     display: "none",
   },
 }));
