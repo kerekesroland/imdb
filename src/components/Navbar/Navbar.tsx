@@ -22,8 +22,8 @@ import { CustomBox } from "../../tools/CustomBox";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { FC } from "react";
+import { customStyles } from "./Navbar.custom";
 
-const drawerWidth = 240;
 const navItems = ["Popular Movies", "Discover Movies", "Discover Tv Shows"];
 
 interface IProps {
@@ -32,7 +32,6 @@ interface IProps {
 
 export const Navbar: FC<IProps> = ({ handleSearch }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
   const inputRef: any = React.useRef();
 
   const handleDrawerToggle = () => {
@@ -41,62 +40,24 @@ export const Navbar: FC<IProps> = ({ handleSearch }) => {
 
   const drawer = (
     <>
-      <Box
-        sx={{
-          backgroundColor: "#282828",
-        }}
-      >
+      <Box sx={customStyles.drawerContainer}>
         <Link to={"/"}>
-          <Typography
-            variant="h6"
-            sx={{
-              my: 2,
-              textAlign: "center",
-              color: "#fff",
-              cursor: "pointer",
-            }}
-          >
+          <Typography variant="h6" sx={customStyles.drawerTitle}>
             IMDB
           </Typography>
         </Link>
       </Box>
 
-      <Divider sx={{ bgcolor: "secondary.light" }} />
+      <Divider sx={customStyles.drawerDivider} />
 
-      <Box
-        onClick={handleDrawerToggle}
-        sx={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          backgroundColor: "#282828",
-        }}
-      >
-        <List
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            rowGap: "1rem",
-          }}
-        >
+      <Box onClick={handleDrawerToggle} sx={customStyles.drawerNavContainer}>
+        <List sx={customStyles.drawerNavList}>
           {navItems.map((item) => (
             <ListItem key={item} disablePadding>
-              <ListItemButton
-                sx={{
-                  backgroundColor: "#383838",
-                  borderRadius: "15px",
-                }}
-              >
+              <ListItemButton sx={customStyles.navItemButton}>
                 <ListItemText
-                  primaryTypographyProps={{
-                    fontSize: "1.2rem",
-                    fontWeight: 600,
-                    color: "#fff",
-                    textAlign: "center",
-                  }}
                   primary={item}
+                  sx={customStyles.navItemButtonText}
                 />
               </ListItemButton>
             </ListItem>
@@ -107,48 +68,24 @@ export const Navbar: FC<IProps> = ({ handleSearch }) => {
   );
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <AppBar
-        component="nav"
-        sx={{ backgroundColor: "#282828", height: "4rem" }}
-      >
-        <Toolbar
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+    <Box sx={customStyles.mainContainer}>
+      <AppBar component="nav" sx={customStyles.appBar}>
+        <Toolbar sx={customStyles.toolBar}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: "none" } }}
+            sx={customStyles.iconButton}
           >
             <MenuIcon />
           </IconButton>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: "4rem",
-            }}
-          >
+          <Box sx={customStyles.leftNav}>
             <Link to={"/"} className={styles.link}>
               <Typography
                 variant="h6"
                 component="div"
-                sx={{
-                  flexGrow: 1,
-                  display: {
-                    xs: "none",
-                    sm: "none",
-                    md: "block",
-                    cursor: "pointer",
-                    color: "white",
-                  },
-                }}
+                sx={customStyles.logoTitle}
               >
                 IMDB
               </Typography>
@@ -157,7 +94,7 @@ export const Navbar: FC<IProps> = ({ handleSearch }) => {
               <SearchIconWrapper
                 onClick={(event) => handleSearch?.(event, inputRef)}
               >
-                <SearchIcon style={{ cursor: "pointer", zIndex: 999 }} />
+                <SearchIcon style={customStyles.searchIcon} />
               </SearchIconWrapper>
               <StyledInputBase
                 onKeyUp={(event) => handleSearch?.(event, inputRef)}
@@ -169,27 +106,14 @@ export const Navbar: FC<IProps> = ({ handleSearch }) => {
           </Box>
           <CustomBox>
             {navItems.map((item) => (
-              <div style={{ display: "flex" }} key={item}>
+              <div style={customStyles.navContainer} key={item}>
                 <Divider
                   orientation="vertical"
                   variant="middle"
-                  sx={{
-                    bgcolor: { sm: "transparent", md: "secondary.light" },
-                    borderRightWidth: { md: 2 },
-                    height: "2rem",
-                  }}
+                  sx={customStyles.divider}
                   flexItem
                 />
-                <Button
-                  key={item}
-                  sx={{
-                    color: "#fff",
-                    textTransform: "none",
-                    letterSpacing: "0.1rem",
-                    fontWeight: 500,
-                    fontSize: "1rem",
-                  }}
-                >
+                <Button key={item} sx={customStyles.navButton}>
                   {item}
                 </Button>
               </div>
@@ -203,15 +127,9 @@ export const Navbar: FC<IProps> = ({ handleSearch }) => {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
-          sx={{
-            display: { xs: "block", md: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
+          sx={customStyles.drawer}
         >
           {drawer}
         </Drawer>
