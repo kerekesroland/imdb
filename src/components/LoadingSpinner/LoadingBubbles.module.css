@@ -21,7 +21,7 @@
 }
 
 .loader::after {
-  background-color: rgb(11, 228, 228);
+  background-color: #4e4e4e;
   animation-delay: 0.5s;
 }
 
@@ -38,5 +38,12 @@
   }
   75% {
     transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .loader {
+    width: 75px;
+    height: 75px;
   }
 }
