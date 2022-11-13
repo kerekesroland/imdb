@@ -1,9 +1,20 @@
 .overview__container {
   padding: 2rem;
+  display: flex;
+  justify-content: center;
 }
 
 .overview {
   color: white;
   line-height: 2rem;
   text-align: left;
+  letter-spacing: 2px;
+  line-height: 2.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .overview__container {
+    justify-content: center;
+    padding: 2rem 2rem 2rem 0;
+  }
 }
