@@ -53,14 +53,16 @@ export const Navbar: FC<IProps> = ({ handleSearch }) => {
       <Box onClick={handleDrawerToggle} sx={customStyles.drawerNavContainer}>
         <List sx={customStyles.drawerNavList}>
           {navItems.map((item) => (
-            <ListItem key={item} disablePadding>
-              <ListItemButton sx={customStyles.navItemButton}>
-                <ListItemText
-                  primary={item}
-                  sx={customStyles.navItemButtonText}
-                />
-              </ListItemButton>
-            </ListItem>
+            <Link to={"/"} className={styles.drawer_link}>
+              <ListItem key={item} disablePadding>
+                <ListItemButton sx={customStyles.navItemButton}>
+                  <ListItemText
+                    primary={item}
+                    sx={customStyles.navItemButtonText}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
       </Box>

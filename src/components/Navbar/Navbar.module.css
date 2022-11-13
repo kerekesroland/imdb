@@ -7,6 +7,10 @@
   text-decoration: none;
 }
 
+.drawer_link {
+  width: 100%;
+}
+
 .appBar {
   background-color: "#282828";
   height: "4rem";
