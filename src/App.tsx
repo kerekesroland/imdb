@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Movie from "./components/Movie/Movie";
+import Movie from "./pages/Movie/Movie";
 import Home from "./pages/Home/Home";
 
 function App() {
