@@ -9,8 +9,13 @@
 
 .drawer_link {
   width: 100%;
+  text-decoration: none;
+  margin: auto 0;
 }
-
+.drawer_link:hover {
+  background-color: rgb(42, 41, 73);
+  border-radius: 15px;
+}
 .appBar {
   background-color: "#282828";
   height: "4rem";

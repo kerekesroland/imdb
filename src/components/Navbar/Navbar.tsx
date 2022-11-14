@@ -20,13 +20,14 @@ import styles from "./Navbar.module.css";
 import { FC } from "react";
 import { customStyles } from "./Navbar.custom";
 
-const navItems = ["Popular Movies", "Discover Movies", "Discover Tv Shows"];
+const navItems = ["Popular Movies"];
 
 interface IProps {
   handleSearch?: Function;
+  handleSetPopular?: Function;
 }
 
-export const Navbar: FC<IProps> = ({ handleSearch }) => {
+export const Navbar: FC<IProps> = ({ handleSearch, handleSetPopular }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const inputRef: any = React.useRef();
 
@@ -49,9 +50,12 @@ export const Navbar: FC<IProps> = ({ handleSearch }) => {
       <Box onClick={handleDrawerToggle} sx={customStyles.drawerNavContainer}>
         <List sx={customStyles.drawerNavList}>
           {navItems.map((item) => (
-            <Link to={"/"} className={styles.drawer_link}>
+            <Link key={item} to={"/"} className={styles.drawer_link}>
               <ListItem key={item} disablePadding>
-                <ListItemButton sx={customStyles.navItemButton}>
+                <ListItemButton
+                  sx={customStyles.navItemButton}
+                  onClick={() => handleSetPopular?.()}
+                >
                   <ListItemText
                     primary={item}
                     sx={customStyles.navItemButtonText}
@@ -111,9 +115,16 @@ export const Navbar: FC<IProps> = ({ handleSearch }) => {
                   sx={customStyles.divider}
                   flexItem
                 />
-                <Button key={item} sx={customStyles.navButton}>
-                  {item}
-                </Button>
+                <Link
+                  key={item}
+                  to={"/"}
+                  onClick={() => handleSetPopular?.()}
+                  className={styles.drawer_link}
+                >
+                  <Button key={item} sx={customStyles.navButton}>
+                    {item}
+                  </Button>
+                </Link>
               </div>
             ))}
           </CustomBox>
