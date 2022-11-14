@@ -9,7 +9,8 @@ import { ICategory } from "../../models/ICategory";
 import Overview from "../../components/Overview/Overview";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { getWikiSearch } from "../../constants/wikipedia_endpoint";
+import { getWikiSearch } from "../../api/wikipediaService";
+import { makeIMDBUrl } from "../../api/imdbService";
 
 const Movie = () => {
   const { id } = useParams();
@@ -19,8 +20,10 @@ const Movie = () => {
 
   //wiki url for the wiki button
   const [wikiUrl, setWikiUrl] = useState("");
+  //imdb url for the imdb button
+  const [imdbUrl, setImdbUrl] = useState("");
 
-  //Set the wiki url so it can be used on the button
+  //Set the wiki and imdb url so it can be used on the buttons
   useEffect(() => {
     const handleWikiSearch = async () => {
       const search: any = await getWikiSearch(data?.movie?.name);
@@ -28,6 +31,16 @@ const Movie = () => {
       setWikiUrl(url);
     };
     handleWikiSearch();
+    const handleImdbSearch = async () => {
+      let url;
+      const search: any = await makeIMDBUrl(data?.movie?.name);
+      const searchedMovie = search?.Search;
+      if (searchedMovie) {
+        url = `https://www.imdb.com/title/${searchedMovie[0]?.imdbID}/?ref_=fn_al_tt_1`;
+        setImdbUrl(url);
+      }
+    };
+    handleImdbSearch();
   }, [data?.movie?.name]);
 
   //Checking if the data is still loading
@@ -76,7 +89,13 @@ const Movie = () => {
               >
                 Wikipedia
               </Button>
-              <Button className={styles.btn} variant="contained">
+              <Button
+                className={styles.btn}
+                variant="contained"
+                href={imdbUrl}
+                rel="noreferrer"
+                target={"_blank"}
+              >
                 IMDB
               </Button>
             </div>
