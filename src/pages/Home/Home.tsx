@@ -12,6 +12,8 @@ import {
   SEARCH_MOVIE,
   SEARCH_MOVIE_RELATED,
 } from "../../Graphql/Queries/searchMovie";
+import NoResults from "../../assets/noResults.svg";
+import { Button } from "@mui/material";
 
 const Home = () => {
   const { data, error, loading } = useQuery(POPULAR_MOVIES);
@@ -37,10 +39,15 @@ const Home = () => {
 
   //Checking if the there was any filtering or not, if not, just return the popularMovies
   useEffect(() => {
-    if (data && filteredMovies.length === 0) {
+    if (data && !searchedData && !related_movies) {
       setFilteredMovies(data.popularMovies);
     }
-  }, [data, filteredMovies.length]);
+  }, [data, searchedData, related_movies]);
+
+  //By clicking on the sole nav item you can reset the list of movies to the popularMovies
+  const handleSetPopular = () => {
+    setFilteredMovies(data.popularMovies);
+  };
 
   //Function that handles the filtering
   const handleSearch = (event: any, inputRef: any) => {
@@ -54,12 +61,13 @@ const Home = () => {
             console.error(error);
           },
           onCompleted(searchedData) {
+            if (searchedData.searchMovies.length === 0) {
+              setFilteredMovies([]);
+            }
             setFilteredMovies(searchedData.searchMovies);
           },
         });
       }
-    } else {
-      setFilteredMovies(data.popularMovies);
     }
   };
 
@@ -81,7 +89,7 @@ const Home = () => {
   if (loading || searchedDataLoading || relatedMoviesLoading) {
     return (
       <Fragment>
-        <Navbar />
+        <Navbar handleSearch={undefined} />
         <div className={styles.loader}>
           <LoadingBubbles />
         </div>
@@ -100,9 +108,31 @@ const Home = () => {
     return <h1>{relatedMoviesError.extraInfo}</h1>;
   }
 
+  //Checking if the filtering was unsuccessful and data was not found for the search params
+  if (!loading && searchedData && filteredMovies.length === 0) {
+    return (
+      <Fragment>
+        <Navbar handleSearch={handleSearch} />
+        <div className={styles.noResultsContainer}>
+          <div className={styles.innerFlexContainer}>
+            <img width={100} height={100} src={NoResults} alt="" />
+            <h1 className={styles.noResults}>No results</h1>
+            <Button
+              onClick={() => setFilteredMovies(data.popularMovies)}
+              className={styles.refreshBtn}
+              variant="contained"
+            >
+              Refresh
+            </Button>
+          </div>
+        </div>
+      </Fragment>
+    );
+  }
+
   return (
     <>
-      <Navbar handleSearch={handleSearch} />
+      <Navbar handleSearch={handleSearch} handleSetPopular={handleSetPopular} />
       <Box sx={{ pt: 10, pb: 5 }} className={styles.movies}>
         {filteredMovies.map((movie: any) => (
           <MovieCard

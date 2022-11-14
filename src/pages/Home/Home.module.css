@@ -16,9 +16,43 @@
   left: calc(50% - 100px);
 }
 
+.noResultsContainer {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  gap: 4rem;
+}
+
+.innerFlexContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.noResults {
+  color: #fff;
+  text-align: center;
+}
+
+.refreshBtn {
+  width: 7rem;
+  background-color: #3a3287;
+  border-radius: 0.5rem;
+  filter: saturate(2.2);
+}
+
 @media screen and (max-width: 768px) {
   .loader {
     width: 75px;
     height: calc(50% - 75px);
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .innerFlexContainer {
+    flex-direction: column;
   }
 }
