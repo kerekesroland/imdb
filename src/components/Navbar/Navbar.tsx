@@ -12,13 +12,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import {
-  Search,
-  SearchIconWrapper,
-  StyledInputBase,
-} from "../../tools/SearchBar";
+import { Search, SearchIconWrapper, StyledInputBase } from "../SearchBar";
 import SearchIcon from "@mui/icons-material/Search";
-import { CustomBox } from "../../tools/CustomBox";
+import { CustomBox } from "../CustomBox";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { FC } from "react";
