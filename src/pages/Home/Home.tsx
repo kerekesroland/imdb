@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { Fragment } from "react";
 import { POPULAR_MOVIES } from "../../Graphql/Queries/fetchPopular";
 import { useLazyQuery, useQuery } from "@apollo/client";
 import MovieCard from "../../components/MovieCard/MovieCard";
@@ -79,9 +80,12 @@ const Home = () => {
   //Checking for data to be returned, until then there is this cool Tiktok like loading :D
   if (loading || searchedDataLoading || relatedMoviesLoading) {
     return (
-      <div className={styles.loader}>
-        <LoadingBubbles />
-      </div>
+      <Fragment>
+        <Navbar />
+        <div className={styles.loader}>
+          <LoadingBubbles />
+        </div>
+      </Fragment>
     );
   }
 
