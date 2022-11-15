@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  flex-direction: column;
+}
+
+.notFoundText {
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.errorImg {
+  width: 10rem;
+}
+
+@media screen and (max-width: 400px) {
+  .notFoundText {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .errorImg {
+    width: 15rem;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .container {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .errorImg {
+    width: 20rem;
+  }
+}
