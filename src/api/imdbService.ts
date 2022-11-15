@@ -6,7 +6,7 @@ export const makeIMDBUrl = async (title: string) => {
   const replaceWith = "\\";
   const formattedTitle = title?.replace(searchRegExp, replaceWith);
   res = await axios.get(
-    `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_IMDB_KEY}&s=${formattedTitle}`
+    `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_IMDB_KEY}&s=${formattedTitle}`
   );
 
   return res.data;
