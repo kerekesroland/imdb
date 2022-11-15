@@ -25,6 +25,7 @@
     <img src="./src/assets/homePage.jpg" align="center" width="500">
     <img src="./src/assets/homePageMobile.jpg" align="center" width="240">
 </div>
+&nbsp;
 
 <p class="projectDescription"> 
 <b>The project itself is about a webb application that can be used to find movies to your liking!</b>
