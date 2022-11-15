@@ -18,13 +18,22 @@
 .title__container {
   width: 90%;
   padding: 2rem 2rem;
-  text-align: center;
 }
 
 .title {
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 400;
+  text-align: center;
+  margin: auto 0;
+}
+
+.backButton {
+  color: #fff;
+  font-size: 2.1rem;
+  position: absolute;
+  margin: auto 0;
+  left: 4rem;
 }
 
 .image__container {
@@ -78,12 +87,15 @@
   }
 }
 
+@media screen and (max-width: 900px) {
+  .backButton {
+    left: 1rem;
+  }
+}
+
 @media only screen and (min-width: 450px) {
   .image__container img {
     object-fit: contain;
-  }
-  .title {
-    font-size: 2rem;
   }
 }
 
