@@ -25,9 +25,14 @@ const navItems = ["Popular Movies"];
 interface IProps {
   handleSearch?: Function;
   handleSetPopular?: Function;
+  searchable: boolean;
 }
 
-export const Navbar: FC<IProps> = ({ handleSearch, handleSetPopular }) => {
+export const Navbar: FC<IProps> = ({
+  handleSearch,
+  handleSetPopular,
+  searchable,
+}) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const inputRef: any = React.useRef();
 
@@ -92,19 +97,21 @@ export const Navbar: FC<IProps> = ({ handleSearch, handleSetPopular }) => {
                 IMDB
               </Typography>
             </Link>
-            <Search>
-              <SearchIconWrapper
-                onClick={(event) => handleSearch?.(event, inputRef)}
-              >
-                <SearchIcon style={customStyles.searchIcon} />
-              </SearchIconWrapper>
-              <StyledInputBase
-                onKeyUp={(event) => handleSearch?.(event, inputRef)}
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-                inputRef={inputRef}
-              />
-            </Search>
+            {searchable && (
+              <Search>
+                <SearchIconWrapper
+                  onClick={(event) => handleSearch?.(event, inputRef)}
+                >
+                  <SearchIcon style={customStyles.searchIcon} />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  onKeyUp={(event) => handleSearch?.(event, inputRef)}
+                  placeholder="Search…"
+                  inputProps={{ "aria-label": "search" }}
+                  inputRef={inputRef}
+                />
+              </Search>
+            )}
           </Box>
           <CustomBox>
             {navItems.map((item) => (

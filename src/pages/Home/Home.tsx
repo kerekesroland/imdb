@@ -90,7 +90,7 @@ const Home = () => {
   if (loading || searchedDataLoading || relatedMoviesLoading) {
     return (
       <Fragment>
-        <Navbar handleSearch={undefined} />
+        <Navbar handleSearch={undefined} searchable={false} />
         <div className={styles.loader}>
           <LoadingBubbles />
         </div>
@@ -113,7 +113,7 @@ const Home = () => {
   if (!loading && searchedData && filteredMovies.length === 0) {
     return (
       <Fragment>
-        <Navbar handleSearch={handleSearch} />
+        <Navbar handleSearch={handleSearch} searchable={false} />
         <div className={styles.noResultsContainer}>
           <div className={styles.innerFlexContainer}>
             <img width={100} height={100} src={NoResults} alt="" />
@@ -138,7 +138,11 @@ const Home = () => {
         <meta name="description" content="Browse from our popular movies" />
         <link rel="canonical" href="/" />
       </Helmet>
-      <Navbar handleSearch={handleSearch} handleSetPopular={handleSetPopular} />
+      <Navbar
+        searchable={true}
+        handleSearch={handleSearch}
+        handleSetPopular={handleSetPopular}
+      />
       <Box sx={{ pt: 10, pb: 5 }} className={styles.movies}>
         {filteredMovies.map((movie: any) => (
           <MovieCard

@@ -68,7 +68,7 @@ const Movie = () => {
         <meta name="description" content="Browse from our popular movies" />
         <link rel="canonical" href={canonical} />
       </Helmet>
-      <Navbar handleSearch={undefined} />
+      <Navbar searchable={false} handleSearch={undefined} />
       <div className={styles.container}>
         <div className={styles.title__container}>
           <h1 className={styles.title}>{data?.movie?.name}</h1>
