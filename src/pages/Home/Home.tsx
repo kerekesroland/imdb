@@ -14,6 +14,7 @@ import {
 } from "../../Graphql/Queries/searchMovie";
 import NoResults from "../../assets/noResults.svg";
 import { Button } from "@mui/material";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const { data, error, loading } = useQuery(POPULAR_MOVIES);
@@ -132,6 +133,11 @@ const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Popular Movies</title>
+        <meta name="description" content="Browse from our popular movies" />
+        <link rel="canonical" href="/" />
+      </Helmet>
       <Navbar handleSearch={handleSearch} handleSetPopular={handleSetPopular} />
       <Box sx={{ pt: 10, pb: 5 }} className={styles.movies}>
         {filteredMovies.map((movie: any) => (

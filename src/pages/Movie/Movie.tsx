@@ -11,12 +11,16 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getWikiSearch } from "../../api/wikipediaService";
 import { makeIMDBUrl } from "../../api/imdbService";
+import { Helmet } from "react-helmet-async";
 
 const Movie = () => {
   const { id } = useParams();
   const { data, error, loading } = useQuery(MOVIE, {
     variables: { id },
   });
+
+  //The canonical url of the movie
+  const canonical = `/movie/:${id}`;
 
   //wiki url for the wiki button
   const [wikiUrl, setWikiUrl] = useState("");
@@ -59,6 +63,11 @@ const Movie = () => {
 
   return (
     <>
+      <Helmet>
+        <title>IMDB - {data?.movie?.name}</title>
+        <meta name="description" content="Browse from our popular movies" />
+        <link rel="canonical" href={canonical} />
+      </Helmet>
       <Navbar handleSearch={undefined} />
       <div className={styles.container}>
         <div className={styles.title__container}>
