@@ -47,30 +47,27 @@ Here's what it can do:
 <div class="builtWithWrapper">
     <div class="imgWrapper">
         <img class="img" src="./src/assets/materialUi.png" align="center" width=50>
-        <p class="textCenter">Material UI</p>
+        &nbsp;  Material UI
     </div>
-    <div style="display: flex;
-    align-items: center;
-    width: fit-content;
-    height: 4rem;
-    background-color: #282828;
-    border-radius: 10px;
-    gap: 1rem;
-    padding: 0 1rem;">
+    <br/>
+    <div class="imgWrapper">
         <img class="img" src="./src/assets/typescript.png" align="center" width=50>
-         <p class="textCenter">Typescript</p>
+         &nbsp;  Typescript
     </div>
+    <br/>
     <div class="imgWrapper">
         <img class="img" src="./src/assets/graphql.png" align="center" width=50>
-         <p class="textCenter">Graphql</p>
+        &nbsp;  Graphql
     </div>
+    <br/>
     <div class="imgWrapper">
-        <img class="img" src="./src/assets/apolloIcon.png" align="center" width=50>
-         <p class="textCenter">Apollo</p>
+        <img class="img" src="./src/assets/apolloClient.png" align="center" width=50>
+        &nbsp;  Apollo
     </div>
+    <br/>
     <div class="imgWrapper">
         <img src="./src/assets/reactIcon.png" align="center" width=50>
-        <p class="textCenter">React</p>
+        &nbsp;  React
     </div>
 </div>
 
@@ -117,44 +114,3 @@ First you will need to run the following command in a terminal:
 <p>Stay safe, off I go.</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<style>
- .textCenter {
-    text-align: center;
-    margin: auto 0;
-    font-size: 1.5rem;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: .5rem;
- }
- .projectDescription {
-    padding-top: 3rem
- }
- .builtWithWrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 1rem;
- } 
-
- .imgWrapper {
-    display: flex;
-    align-items: center;
-    width: fit-content;
-    height: 4rem;
-    background-color: #282828;
-    border-radius: 10px;
-    gap: 1rem;
-    padding: 0 1rem;
- }
- .images {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1rem;
- }
- .highlight {
-    color: dodgerblue;
-    font-weight: bolder;
- }
-</style>
