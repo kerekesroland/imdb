@@ -28,6 +28,7 @@
 
 <p class="projectDescription"> 
 <b>The project itself is about a webb application that can be used to find movies to your liking!</b>
+</p>
 
 Here's what it can do:
 
