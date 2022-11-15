@@ -89,17 +89,17 @@ First you will need to run the following command in a terminal:
 
 ### Installation
 
-1. Get a free API Key for the IMDB link to work at [https://rapidapi.com/](https://rapidapi.com/) and find Movie Database Alternative.
-2. Subscribe to this API
-3. Clone the repo
+1. Get a free API Key for the IMDB link to work at [http://www.omdbapi.com/](http://www.omdbapi.com/).
+
+2. Clone the repo
    ```sh
    git clone https://github.com/kerekesroland/imdb.git
    ```
-4. Install NPM packages
+3. Install NPM packages
    ```sh
    npm install
    ```
-5. Create a .env file and enter your API in like this
+4. Create a .env file and enter your API in like this
    ```
    REACT_APP_IMDB_KEY=<YOUR API KEY GOES HERE>
    ```
