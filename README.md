@@ -1,46 +1,152 @@
-# Getting Started with Create React App
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary><a id="readme-top">Table of Contents</a></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+  </ol>
+</details>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# About the Project
 
-## Available Scripts
+<div class="images"> 
+    <img src="./src/assets/homePage.jpg" align="center" width="500">
+    <img src="./src/assets/homePageMobile.jpg" align="center" width="240">
+</div>
 
-In the project directory, you can run:
+<p class="projectDescription"> 
+<b>The project itself is about a webb application that can be used to find movies to your liking!</b>
 
-### `npm start`
+Here's what it can do:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- You can see the currently popular movies
+- You are able to search among the movies available
+- You can hover over the movies to have 2 options available for you:
+  - You can select the similar option so the application will find the related movies of the selected movie
+  - You can see the movie in a detail panel and check it out on imdb or wikipedia if you are further interested
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+</p>
 
-### `npm test`
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Built With
 
-### `npm run build`
+<div class="builtWithWrapper">
+    <div class="imgWrapper">
+        <img class="img" src="./src/assets/materialUi.png" align="center" width=50>
+        <p class="textCenter">Material UI</p>
+    </div>
+    <div class="imgWrapper">
+        <img class="img" src="./src/assets/typescript.png" align="center" width=50>
+         <p class="textCenter">Typescript</p>
+    </div>
+    <div class="imgWrapper">
+        <img class="img" src="./src/assets/graphql.png" align="center" width=50>
+         <p class="textCenter">Graphql</p>
+    </div>
+    <div class="imgWrapper">
+        <img class="img" src="./src/assets/apolloIcon.png" align="center" width=50>
+         <p class="textCenter">Apollo</p>
+    </div>
+    <div class="imgWrapper">
+        <img src="./src/assets/reactIcon.png" align="center" width=50>
+        <p class="textCenter">React</p>
+    </div>
+</div>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<!-- GETTING STARTED -->
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+First you will need to run the following command in a terminal:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Installation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Get a free API Key for the IMDB link to work at [https://rapidapi.com/](https://rapidapi.com/) and find Movie Database Alternative.
+2. Subscribe to this API
+3. Clone the repo
+   ```sh
+   git clone https://github.com/kerekesroland/imdb.git
+   ```
+4. Install NPM packages
+   ```sh
+   npm install
+   ```
+5. Create a .env file and enter your API in like this
+   ```
+   REACT_APP_IMDB_KEY=<YOUR API KEY GOES HERE>
+   ```
 
-## Learn More
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- USAGE EXAMPLES -->
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Usage
+
+<p>In a terminal inside the project folder use <b class="highlight">npm start</b> and it will open the application in a new window.</p>
+<p>If it doesn't open the application then you will find it if you type <b class="highlight">https://localhost:3000</b> in your browser.</p>
+<p>Stay safe, off I go.</p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<style>
+ .textCenter {
+    text-align: center;
+    margin: auto 0;
+    font-size: 1.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: .5rem;
+ }
+ .projectDescription {
+    padding-top: 3rem
+ }
+ .builtWithWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+ } 
+
+ .imgWrapper {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 4rem;
+    background-color: #282828;
+    border-radius: 10px;
+    gap: 1rem;
+    padding: 0 1rem;
+ }
+ .images {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+ }
+ .highlight {
+    color: dodgerblue;
+    font-weight: bolder;
+ }
+</style>
