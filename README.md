@@ -49,7 +49,14 @@ Here's what it can do:
         <img class="img" src="./src/assets/materialUi.png" align="center" width=50>
         <p class="textCenter">Material UI</p>
     </div>
-    <div class="imgWrapper">
+    <div style="display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 4rem;
+    background-color: #282828;
+    border-radius: 10px;
+    gap: 1rem;
+    padding: 0 1rem;">
         <img class="img" src="./src/assets/typescript.png" align="center" width=50>
          <p class="textCenter">Typescript</p>
     </div>
